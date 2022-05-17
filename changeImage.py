@@ -32,6 +32,6 @@ if __name__ == "__main__":
     for img_path in image_list:
         try:
             output_path = process_image(img_path)
-            upload_image(output_path)
+            # upload_image(output_path)
         except Exception as err:
             logger.error("ImageError: {}".format(err))

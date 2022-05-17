@@ -15,13 +15,7 @@ def process_text(text, image_name):
      }
     return post
 
-def post_fruit(data):
-    headers = {'Content-type': 'application/json'}
-    r = requests.post("http://localhost/fruits/", data=json.dumps(data), headers=headers)
-    print(data)
-    print(r.content)
-
-def run():
+def generate_data():
     text_list = os.listdir(TEXT_DIR)
     data = []
     for text in text_list:
@@ -30,9 +24,18 @@ def run():
                image_name = text.replace(".txt", ".jpeg")
                lines = txt.readlines()
                post_data = process_text(lines, image_name)
-               post_fruit(post_data)
                data.append(post_data)
     return data
+
+def submit_post(data):
+    for post in data:
+        headers = {'Content-type': 'application/json'}
+        r = requests.post("http://localhost/fruits/", data=json.dumps(post), headers=headers)
+        print("Posting {}: {}".format(post["name"], r.status_code))
+
+def run():
+    data = generate_data()
+    submit_post(data)
 
 if __name__ == "__main__":
     run()
