@@ -16,10 +16,10 @@ def process_text(text, image_name):
     return post
 
 def post_fruit(data):
-    headers = {'Content-type': 'application/json', 'Accept': 'text/plain'}
-    r = requests.post("http://localhost/fruits", data=json.dumps(data), headers=headers)
+    headers = {'Content-type': 'application/json'}
+    r = requests.post("http://localhost/fruits/", data=json.dumps(data), headers=headers)
     print(data)
-    print(r.status_code)
+    print(r.content)
 
 def run():
     text_list = os.listdir(TEXT_DIR)
