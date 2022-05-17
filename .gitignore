@@ -4,3 +4,4 @@
 .profile
 .ssh/
 .wget-hsts
+supplier-data/**
